@@ -2,16 +2,8 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>be.klimtoren</groupId>
-    <artifactId>klimtoren-parent</artifactId>
+    <artifactId>klimtoren-modules</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>klimtoren-modules</artifactId>
-  <packaging>pom</packaging>
-  <name>Klimtoren :: Modules</name>
-  
-  
-  <modules>
-  	<module>klimtoren-core</module>
-  	<module>klimtoren-web</module>
-  </modules>
+  <artifactId>klimtoren-web</artifactId>
 </project>
