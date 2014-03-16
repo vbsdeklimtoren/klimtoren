@@ -11,10 +11,12 @@
 	<properties>
 		<spring.version>3.2.4.RELEASE</spring.version>
 		<spring.jpa.version>1.4.3.RELEASE</spring.jpa.version>
-		<hibernate.version>4.3.1.Final</hibernate.version>
+		<hibernate.version>4.1.7.Final</hibernate.version>
 		<mysql.connector.version>5.1.29</mysql.connector.version>
 		<cglib.version>3.1</cglib.version>
 		<slf4j.version>1.6.1</slf4j.version>
+		<commons.version>2.6</commons.version>
+		<jackson.version>1.9.12</jackson.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -70,7 +72,7 @@
 				<artifactId>spring-data-jpa</artifactId>
 				<version>${spring.jpa.version}</version>
 			</dependency>
-			
+
 			<!-- Hibernate -->
 			<dependency>
 				<groupId>org.hibernate</groupId>
@@ -82,21 +84,21 @@
 				<artifactId>hibernate-entitymanager</artifactId>
 				<version>${hibernate.version}</version>
 			</dependency>
-			
+
 			<!-- MySQL JDBC connector -->
 			<dependency>
 				<groupId>mysql</groupId>
 				<artifactId>mysql-connector-java</artifactId>
 				<version>${mysql.connector.version}</version>
 			</dependency>
-			
+
 			<!-- CGLIB -->
 			<dependency>
 				<groupId>cglib</groupId>
 				<artifactId>cglib</artifactId>
 				<version>${cglib.version}</version>
 			</dependency>
-			
+
 			<!-- Servlet API 3.0 -->
 			<dependency>
 				<groupId>javax.servlet</groupId>
@@ -109,7 +111,7 @@
 				<artifactId>jstl</artifactId>
 				<version>1.2</version>
 			</dependency>
-			
+
 			<!-- Logging dependencies -->
 			<dependency>
 				<groupId>org.slf4j</groupId>
@@ -126,13 +128,53 @@
 				<artifactId>log4j</artifactId>
 				<version>1.2.16</version>
 			</dependency>
-			
+
 			<!-- Testing dependencies -->
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>4.9</version>
 				<scope>test</scope>
+			</dependency>
+
+			<!-- Project LOMBOK -->
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>1.12.4</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<!-- JSON mapper -->
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-core-asl</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-mapper-asl</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+			<!-- Commons -->
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>${commons.version}</version>
+			</dependency>
+
+			<!-- Google Tools -->
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>16.0.1</version>
+			</dependency>
+			
+			<!-- Klimtoren -->
+			<dependency>
+				<groupId>be.klimtoren</groupId>
+				<artifactId>klimtoren-core</artifactId>
+				<version>${project.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
