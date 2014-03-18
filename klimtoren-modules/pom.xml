@@ -13,5 +13,6 @@
   <modules>
   	<module>klimtoren-core</module>
   	<module>klimtoren-web</module>
+  	<module>klimtoren-cms</module>
   </modules>
 </project>

@@ -8,9 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import be.klimtoren.application.identity.PartyService;
 import be.klimtoren.application.identity.ResourceService;
-import be.klimtoren.domain.model.party.Organization;
+import be.klimtoren.domain.model.party.Party;
 import be.klimtoren.domain.model.party.PartyRepository;
-import be.klimtoren.domain.model.party.Person;
 import be.klimtoren.domain.model.resource.Book;
 import be.klimtoren.domain.model.resource.ResourceRepository;
 import be.klimtoren.facade.identity.BookServiceFacade;
@@ -21,7 +20,6 @@ public class BookServiceFacadeImpl implements BookServiceFacade {
 
 	@Autowired
 	private ResourceRepository resourceRepository;
-
 	@Autowired
 	private PartyRepository partyRepository;
 	@Autowired
@@ -31,29 +29,29 @@ public class BookServiceFacadeImpl implements BookServiceFacade {
 
 
 	@Override
-	public Book newBook() {
-		Organization klimtoren = null;
-		Organization eenhoorn = null;
-		Person emile = null;
-		if(partyRepository.searchOrganizationByName("VBS De Klimtoren").size() == 0) {
-			klimtoren = partyService.registerNewOrganization("VBS De Klimtoren");
-			eenhoorn = partyService.registerNewOrganization("De eenhoorn");
-			emile = partyService.registerNewPerson("Emile", "Jadoul", null);
+	public Book newBook(String title, Long authorId, Long publisherId, Long ownerId) {
+		Party author = partyRepository.find(authorId);
+		Party publisher = partyRepository.find(publisherId);
+		Party forParty = partyRepository.find(ownerId);
+		
+		if(author != null && publisher != null && forParty != null) {
+			return resourceService.registerNewBook(title, author, publisher, forParty);
 		} else {
-			klimtoren = partyRepository.searchOrganizationByName("VBS De Klimtoren").get(0);
-			eenhoorn = partyRepository.searchOrganizationByName("De eenhoorn").get(0);
-			emile = partyRepository.searchPersonByName("Emile").get(0);
+			return null; //TODO: throw error ??
 		}
-		Book book = resourceService.registerNewBook("Knuffelkonijn", emile, eenhoorn, klimtoren);
-
-		return book;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Book> list() {
-		newBook();
-		Organization klimtoren = (Organization) partyRepository.searchOrganizationByName("VBS De Klimtoren").get(0);
-		return (List<Book>) resourceRepository.findBooksByOwner(klimtoren);
+	public List<Book> list(Long ownerId) {
+		Party owner = new Party();
+		owner.setId(ownerId);;
+		
+		return (List<Book>) resourceRepository.findBooksByOwner(owner);
+	}
+
+	@Override
+	public Book find(Long id) {
+		return (Book) resourceRepository.findBook(id);
 	}
 }

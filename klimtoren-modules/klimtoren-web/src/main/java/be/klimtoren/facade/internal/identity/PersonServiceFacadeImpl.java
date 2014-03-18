@@ -41,8 +41,8 @@ public class PersonServiceFacadeImpl implements PersonServiceFacade {
 
 	@Override
 	public Person store(Person person) {
-		// TODO Auto-generated method stub
-		return null;
+		partyRepository.store(person);
+		return person;
 	}
 
 }

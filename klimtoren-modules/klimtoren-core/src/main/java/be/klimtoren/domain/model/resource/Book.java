@@ -36,4 +36,5 @@ public class Book extends Resource {
 	
 	
 	public static interface BasicView extends BaseView { }
+	public static interface FullView extends BasicView { }
 }

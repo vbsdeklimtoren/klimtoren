@@ -28,10 +28,10 @@ import be.klimtoren.domain.shared.EntitySupport;
 @Data @NoArgsConstructor @AllArgsConstructor @EqualsAndHashCode(callSuper=true)
 public class Party extends EntitySupport<Party, Long> {
 	 
-	@JsonView(FullView.class)
+	@JsonView({FullView.class, Book.FullView.class})
 	private String descriptiveInformation;
 	
-	@JsonView(FullView.class)
+	@JsonView({FullView.class, Book.FullView.class})
 	private String name;
 	
 	@JsonView({BasicView.class, Book.BasicView.class})

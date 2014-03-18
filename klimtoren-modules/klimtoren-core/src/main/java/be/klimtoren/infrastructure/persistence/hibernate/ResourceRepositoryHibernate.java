@@ -14,6 +14,18 @@ import be.klimtoren.domain.model.resource.ResourceRepository;
 
 @Repository("resourceRepository")
 public class ResourceRepositoryHibernate extends HibernateRepository implements ResourceRepository {
+	@Override
+	public Resource find(Long id) {
+		return (Resource) getSession().createQuery("from Resource as r where r.id = :id")
+				.setParameter("id", id)
+				.uniqueResult();
+	}
+	@Override
+	public Book findBook(Long id) {
+		return (Book) getSession().createQuery("from Book as r where r.id = :id")
+				.setParameter("id", id)
+				.uniqueResult();
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -97,5 +109,7 @@ public class ResourceRepositoryHibernate extends HibernateRepository implements 
 			return book;
 		}
 	}
+
+
 
 }
